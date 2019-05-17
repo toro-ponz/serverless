@@ -21,26 +21,6 @@ frameworkVersion: ">=1.28.0 <2.0.0"
 provider:
   name: aws
   runtime: go1.x
-
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
   stage: dev
   region: ap-northeast-1
   iamRoleStatements:
@@ -66,6 +46,40 @@ package:
    - ./bin/**
 
 functions:
+  # get:
+  #   handler: bin/get
+  #   events:
+  #     - http:
+  #         path: /todo
+  #         method: get
+
+  # list:
+  #   handler: bin/list
+  #   events:
+  #     - http:
+  #         path: /todo
+  #         method: get
+
+  post:
+    handler: bin/post
+    events:
+      - http:
+          path: /todo
+          method: post
+
+  # put:
+  #   handler: bin/put
+  #   events:
+  #     - http:
+  #         path: /todo
+  #         method: put
+
+  # delete:
+  #   handler: bin/delete
+  #   events:
+  #     - http:
+  #         path: /todo
+  #         method: delete
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
